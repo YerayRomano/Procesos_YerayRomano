@@ -20,7 +20,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.ejecutaComando();
+        main.esperaraquetermine();
     }
     
     private void ejecutaComando() throws Exception {
@@ -29,5 +29,13 @@ public class Main {
         pb.inheritIO();
         
         p.waitFor(5,TimeUnit.SECONDS);
+    }
+    private void esperaraquetermine()throws Exception {
+        ProcessBuilder pb = new ProcessBuilder("ping","88.208.35.41");
+        Process p = pb.start();
+        while(p.isAlive()) {
+            System.out.println("esperando");
+            Thread.sleep(2000);
+        }
     }
 }
