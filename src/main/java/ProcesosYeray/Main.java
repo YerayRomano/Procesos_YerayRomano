@@ -22,7 +22,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.esperarYMatar();
+        main.ejecutarEnDirectorio();
     }
     
     private void ejecutaComando() throws Exception {
@@ -48,8 +48,12 @@ public class Main {
            p.destroyForcibly();
            System.out.print("Process killed, that BD was lackin' (BDK)");
         }
+    }
+    private void ejecutarEnDirectorio() throws Exception{
+        ProcessBuilder pb = new ProcessBuilder("CMD","dir","c:\\users");
+        Process p = pb.start();
         BufferedReader lector = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader lector2 = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+        BufferedReader lector1 = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         String linea =null;
         System.out.println("salida del comando");
 
@@ -59,7 +63,7 @@ public class Main {
 
         String linea1 =null;
         while((linea1 = lector1.readLine())!=null) {
-            System.out.println("error lines:"+lineas1);
+            System.out.println("error lines:"+linea1);
         }
     }
 }
